@@ -116,7 +116,7 @@ export default function OrderTrackingPage() {
   }
 
   return (
-    <div className="p-4 sm:p-6 max-w-7xl mx-auto">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
       <PageHeader title="Order Tracking" subtitle="Update shipment progress shown in the mobile app" />
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
@@ -133,7 +133,7 @@ export default function OrderTrackingPage() {
 
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         {filtered.length === 0 ? (
-          <EmptyState icon="🚚" message="No shipments found" />
+          <EmptyState icon={<svg className="w-10 h-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2 .001M13 16H9m4 0h3m3 0h.5M13 6h4l3 5v5h-.5M13 6v10" /></svg>} message="No shipments found" />
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">

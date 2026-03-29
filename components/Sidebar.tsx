@@ -102,7 +102,7 @@ export default function Sidebar({ onClose }: { onClose: () => void }) {
   return (
     <aside className="w-56 h-full bg-white border-r border-slate-200 flex flex-col shadow-sm">
       {/* Logo + close button */}
-      <div className="px-4 py-5 border-b border-slate-100 flex items-center justify-between">
+      <div className="px-4 py-5 h-[50px] border-b border-slate-100 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-lg bg-[#4AB7B6] flex items-center justify-center">
             <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -123,7 +123,7 @@ export default function Sidebar({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-0">
+      <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <NavSection title="Main menu"  items={MAIN_NAV}    pathname={pathname} onClose={onClose} />
         <NavSection title="Product"    items={PRODUCT_NAV} pathname={pathname} onClose={onClose} />
         <NavSection title="Admin"      items={ADMIN_NAV}   pathname={pathname} onClose={onClose} />

@@ -84,7 +84,7 @@ export default function ProductsPage() {
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <div className="relative flex-1">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔍</span>
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           <input
             type="text"
             placeholder="Search products..."
@@ -106,7 +106,7 @@ export default function ProductsPage() {
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-48 gap-3">
-            <span className="text-4xl">😔</span>
+            <svg className="w-10 h-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
             <p className="text-slate-500 font-medium">No products found</p>
           </div>
         ) : (
@@ -147,7 +147,7 @@ export default function ProductsPage() {
                       </span>
                     </td>
                     <td className="px-4 sm:px-6 py-4 hidden lg:table-cell">
-                      <span className="text-yellow-500">★</span>{" "}
+                      <svg className="inline w-3.5 h-3.5 text-yellow-400 fill-yellow-400 mb-0.5" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>{" "}
                       <span className="font-medium text-slate-700">{p.rating.toFixed(1)}</span>
                     </td>
                     <td className="px-4 sm:px-6 py-4">

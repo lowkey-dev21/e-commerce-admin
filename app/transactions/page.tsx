@@ -45,7 +45,7 @@ export default function TransactionsPage() {
   const total = TRANSACTIONS.reduce((sum, t) => sum + parseFloat(t.amount.replace("$", "").replace(",", "")), 0);
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-5">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-5">
       <div>
         <h2 className="text-xl font-bold text-slate-800">Transaction</h2>
         <p className="text-sm text-slate-400 mt-0.5">{TRANSACTIONS.length} transactions</p>

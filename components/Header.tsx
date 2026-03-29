@@ -37,7 +37,7 @@ export default function Header({ onMenuClick }: { onMenuClick: () => void }) {
   const initial = adminName.charAt(0).toUpperCase();
 
   return (
-    <header className="sticky top-0 z-10 bg-white border-b border-slate-200 px-4 h-14 flex items-center gap-3 shrink-0">
+    <header className="sticky top-0 z-10 bg-white border-b border-slate-200 px-4 h-[50px] flex items-center gap-3 shrink-0">
       {/* Hamburger — mobile only */}
       <button
         onClick={onMenuClick}

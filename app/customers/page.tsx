@@ -6,6 +6,7 @@ import FilterSelect from "@/components/ui/FilterSelect";
 import StatusBadge from "@/components/ui/StatusBadge";
 import StatCard from "@/components/ui/StatCard";
 import EmptyState from "@/components/ui/EmptyState";
+import Modal from "@/components/ui/Modal";
 
 type Customer = { id: string; name: string; email: string; phone: string; orders: number; spent: string; joined: string; status: "Active" | "Inactive" };
 
@@ -28,6 +29,7 @@ export default function CustomersPage() {
   const [customers, setCustomers] = useState<Customer[]>(INIT_CUSTOMERS);
   const [search, setSearch]       = useState("");
   const [filter, setFilter]       = useState("All");
+  const [viewCustomer, setViewCustomer] = useState<Customer | null>(null);
 
   const filtered = customers.filter((c) => {
     const q = search.toLowerCase();
@@ -39,12 +41,15 @@ export default function CustomersPage() {
     setCustomers((prev) =>
       prev.map((c) => c.id === id ? { ...c, status: c.status === "Active" ? "Inactive" : "Active" } : c)
     );
+    setViewCustomer((prev) => prev?.id === id ? { ...prev, status: prev.status === "Active" ? "Inactive" : "Active" } : prev);
   }
 
   const avgOrders = (customers.reduce((s, c) => s + c.orders, 0) / customers.length).toFixed(1);
 
+  const avatarIndex = (id: string) => INIT_CUSTOMERS.findIndex((c) => c.id === id);
+
   return (
-    <div className="p-4 sm:p-6 max-w-7xl mx-auto">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
       <PageHeader title="Customers" subtitle={`${customers.length} registered customers`} />
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
@@ -95,7 +100,7 @@ export default function CustomersPage() {
                   <td className="px-4 sm:px-5 py-3.5"><StatusBadge status={c.status} /></td>
                   <td className="px-4 sm:px-5 py-3.5">
                     <div className="flex gap-2">
-                      <button className="text-xs px-2.5 py-1 text-[#4AB7B6] bg-[#E6F7F7] rounded-lg font-semibold hover:bg-[#4AB7B6]/20 transition whitespace-nowrap">View</button>
+                      <button onClick={() => setViewCustomer(c)} className="text-xs px-2.5 py-1 text-[#4AB7B6] bg-[#E6F7F7] rounded-lg font-semibold hover:bg-[#4AB7B6]/20 transition whitespace-nowrap">View</button>
                       <button
                         onClick={() => toggleStatus(c.id)}
                         className={`text-xs px-2.5 py-1 rounded-lg font-semibold transition whitespace-nowrap ${
@@ -113,8 +118,47 @@ export default function CustomersPage() {
             </tbody>
           </table>
         </div>
-        {filtered.length === 0 && <EmptyState icon="👤" message="No customers found" />}
+        {filtered.length === 0 && <EmptyState icon={<svg className="w-10 h-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>} message="No customers found" />}
       </div>
+
+      {viewCustomer && (
+        <Modal title="Customer Details" onClose={() => setViewCustomer(null)} maxWidth="max-w-sm"
+          footer={
+            <button
+              onClick={() => toggleStatus(viewCustomer.id)}
+              className={`px-5 py-2 text-sm font-semibold rounded-xl transition ${viewCustomer.status === "Active" ? "bg-red-500 hover:bg-red-600 text-white" : "bg-emerald-500 hover:bg-emerald-600 text-white"}`}
+            >
+              {viewCustomer.status === "Active" ? "Block Customer" : "Activate Customer"}
+            </button>
+          }
+        >
+          <div className="flex flex-col items-center gap-3 pb-4 border-b border-slate-100 mb-4">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-bold"
+              style={{ backgroundColor: AVATAR_COLORS[avatarIndex(viewCustomer.id) % AVATAR_COLORS.length] }}>
+              {viewCustomer.name.charAt(0)}
+            </div>
+            <div className="text-center">
+              <p className="font-bold text-slate-800">{viewCustomer.name}</p>
+              <p className="text-xs text-slate-400">{viewCustomer.email}</p>
+            </div>
+            <StatusBadge status={viewCustomer.status} />
+          </div>
+          <div className="space-y-3 text-sm">
+            {[
+              { label: "Customer ID", value: viewCustomer.id },
+              { label: "Phone",       value: viewCustomer.phone },
+              { label: "Total Orders",value: String(viewCustomer.orders) },
+              { label: "Total Spent", value: viewCustomer.spent },
+              { label: "Member Since",value: viewCustomer.joined },
+            ].map(({ label, value }) => (
+              <div key={label} className="flex justify-between">
+                <span className="text-slate-500">{label}</span>
+                <span className="font-semibold text-slate-800">{value}</span>
+              </div>
+            ))}
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }

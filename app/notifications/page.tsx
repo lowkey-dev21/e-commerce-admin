@@ -18,11 +18,11 @@ type Notification = {
 };
 
 const NOTIFS: Notification[] = [
-  { id: "1", type: "promo",    title: "Flash Sale! 🔥",           body: "Get 20% off on all furniture this weekend. Limited time offer!", audience: "all",       sentAt: "29 Mar 2026, 09:00", sent: 1240, opened: 876 },
+  { id: "1", type: "promo",    title: "Flash Sale!",               body: "Get 20% off on all furniture this weekend. Limited time offer!", audience: "all",       sentAt: "29 Mar 2026, 09:00", sent: 1240, opened: 876 },
   { id: "2", type: "order",    title: "Purchase Completed!",       body: "Your order has been confirmed. Thank you for shopping with us!", audience: "customers", sentAt: "28 Mar 2026, 14:22", sent: 34,   opened: 34  },
   { id: "3", type: "delivery", title: "Package Shipped",           body: "Your package is on its way. Estimated delivery: Today.",         audience: "customers", sentAt: "28 Mar 2026, 10:05", sent: 28,   opened: 21  },
   { id: "4", type: "promo",    title: "New Arrivals",              body: "Check out the latest products added to our store. Shop now!",    audience: "all",       sentAt: "27 Mar 2026, 08:00", sent: 1240, opened: 603 },
-  { id: "5", type: "promo",    title: "Weekend Deal 🛍️",          body: "Exclusive deals for this weekend only. Don't miss out!",         audience: "segment",   sentAt: "26 Mar 2026, 12:00", sent: 420,  opened: 315 },
+  { id: "5", type: "promo",    title: "Weekend Deal",              body: "Exclusive deals for this weekend only. Don't miss out!",         audience: "segment",   sentAt: "26 Mar 2026, 12:00", sent: 420,  opened: 315 },
 ];
 
 const TYPE_STYLES: Record<NotifType, { bg: string; text: string; label: string }> = {
@@ -133,7 +133,7 @@ export default function NotificationsPage() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
       <PageHeader
         title="Notifications"
         subtitle="Send and manage push notifications to mobile users"
@@ -165,7 +165,7 @@ export default function NotificationsPage() {
 
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         {filtered.length === 0 ? (
-          <EmptyState icon="🔔" message="No notifications found" />
+          <EmptyState icon={<svg className="w-10 h-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>} message="No notifications found" />
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">

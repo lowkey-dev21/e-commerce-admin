@@ -33,9 +33,9 @@ const TOP_PRODUCTS = [
 ];
 
 const COUNTRIES = [
-  { flag: "🇺🇸", name: "USA",       value: "30k", pct: 72, delta: "29.8%", up: true  },
-  { flag: "🇧🇷", name: "Brazil",    value: "18k", pct: 60, delta: "10.8%", up: false },
-  { flag: "🇦🇺", name: "Australia", value: "12k", pct: 50, delta: "39.8%", up: true  },
+  { flagCode: "us", name: "USA",       value: "30k", pct: 72, delta: "29.8%", up: true  },
+  { flagCode: "br", name: "Brazil",    value: "18k", pct: 60, delta: "10.8%", up: false },
+  { flagCode: "au", name: "Australia", value: "12k", pct: 50, delta: "39.8%", up: true  },
 ];
 
 const USER_BARS = [120,200,150,310,280,180,240,350,290,220,300,410,380,260,340].map((v) => ({ v }));
@@ -90,7 +90,7 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="p-4 sm:p-5 space-y-4 sm:space-y-5">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-4 sm:space-y-5">
 
       {/* ── Row 1: Stat Cards ── */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -227,7 +227,8 @@ export default function DashboardPage() {
                 <div key={c.name}>
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-base">{c.flag}</span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={`https://flagcdn.com/w20/${c.flagCode}.png`} alt={c.name} className="w-5 h-4 rounded-sm object-cover shrink-0" />
                       <div>
                         <p className="text-xs font-semibold text-slate-700 leading-tight">{c.value}</p>
                         <p className="text-[10px] text-slate-400 leading-tight">{c.name}</p>

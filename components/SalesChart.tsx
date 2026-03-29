@@ -30,15 +30,15 @@ export default function SalesChart({ data }: { data: DayData[] }) {
         />
         <Tooltip
           contentStyle={{ borderRadius: 12, border: "1px solid #E2E8F0", fontSize: 13 }}
-          formatter={(value: number) => [`$${value.toFixed(2)}`, "Revenue"]}
+          formatter={(value) => [`$${Number(value).toFixed(2)}`, "Revenue"]}
           labelStyle={{ fontWeight: 600, color: "#1E293B" }}
         />
         <Line
           type="monotone"
           dataKey="revenue"
-          stroke="#6C63FF"
+          stroke="#4AB7B6"
           strokeWidth={2.5}
-          dot={{ r: 4, fill: "#6C63FF", strokeWidth: 2, stroke: "#fff" }}
+          dot={{ r: 4, fill: "#4AB7B6", strokeWidth: 2, stroke: "#fff" }}
           activeDot={{ r: 6 }}
         />
       </LineChart>

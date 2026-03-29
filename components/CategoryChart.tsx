@@ -10,7 +10,7 @@ import {
   Cell,
 } from "recharts";
 
-const COLORS = ["#6C63FF", "#10B981", "#F59E0B", "#EF4444", "#3B82F6"];
+const COLORS = ["#4AB7B6", "#F4A94E", "#10B981", "#EF4444", "#3B82F6"];
 
 type CategoryData = { _id: string; revenue: number; count: number };
 
@@ -33,7 +33,7 @@ export default function CategoryChart({ data }: { data: CategoryData[] }) {
         />
         <Tooltip
           contentStyle={{ borderRadius: 12, border: "1px solid #E2E8F0", fontSize: 13 }}
-          formatter={(value: number) => [`$${value.toFixed(2)}`, "Revenue"]}
+          formatter={(value) => [`$${Number(value).toFixed(2)}`, "Revenue"]}
           labelStyle={{ fontWeight: 600, color: "#1E293B" }}
         />
         <Bar dataKey="revenue" radius={[6, 6, 0, 0]}>
